@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MX动漫官网入口-高清无广告的动漫网站</title>
+    <meta name="keywords" content="MX动漫、动漫免费观看、高清动漫、最新动漫、热门动漫、动漫资源">
+    <meta name="description" content="MX动漫是一个高清在线的动漫网站，包含日本动漫、国产动漫、动漫电影、欧美动漫等多类动漫资源，无广告，支持追番日历和安卓APP，是动漫爱好者的天堂">
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+        tailwind.config = { darkMode: `class` }
+    </script>
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="mxdongman.png">
+    <link rel="manifest" href="site.webmanifest">
+    <script>
+        // 自定义Tailwind配置
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#722ED1', // 紫色主色调
+                        secondary: '#9254DE', // 浅紫色辅助色
+                        neutral: {
+                            100: '#F8F9FA',
+                            200: '#E9ECEF',
+                            700: '#343A40',
+                            800: '#212529',
+                            900: '#121212'
+                        }
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            .hover-scale {
+                transition: transform 0.3s ease;
+            }
+            .hover-scale:hover {
+                transform: scale(1.03);
+            }
+            .feature-card {
+                @apply bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+            }
+            .icon-bg {
+                @apply bg-primary/10 dark:bg-primary/20 p-3 rounded-lg mr-4;
+            }
+            .resource-card {
+                @apply bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1;
+            }
+            .fade-in {
+                opacity: 0;
+                transform: translateY(20px);
+                animation: fadeIn 0.8s ease forwards;
+            }
+            @keyframes fadeIn {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            .user-card {
+                @apply bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md transition-all duration-300 hover:shadow-lg;
+            }
+            .user-icon {
+                @apply w-16 h-16 rounded-full overflow-hidden shadow-md mb-4;
+            }
+        }
+    </style>
+</head>
+
+<body class="min-h-screen font-inter bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+    <div class="container mx-auto px-4 py-8 max-w-7xl">
+
+        <!-- 导航栏 -->
+        <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md shadow-sm transition-all duration-300" id="navbar">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+                        <a href="#" class="flex-shrink-0 flex items-center">
+                            <i class="fas fa-play-circle text-primary text-xl mr-2"></i>
+                            <span class="text-primary font-bold text-xl">MX动漫</span>
+                        </a>
+                        <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                            <a href="#about" class="border-b-2 border-primary px-1 pt-1 text-sm font-medium text-primary">网站介绍</a>
+                            <a href="#features" class="border-transparent hover:border-primary px-1 pt-1 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-primary">功能特点</a>
+                            <a href="#steps" class="border-transparent hover:border-primary px-1 pt-1 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-primary">使用步骤</a>
+                            <a href="#faq" class="border-transparent hover:border-primary px-1 pt-1 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-primary">常见问题</a>
+                            <a href="#reviews" class="border-transparent hover:border-primary px-1 pt-1 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-primary">用户评价</a>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" id="themeToggle">
+                            <i class="fas fa-moon-o text-gray-500 dark:text-yellow-400"></i>
+                        </button>
+                        <button class="ml-4 block sm:hidden p-2 rounded-md text-gray-500 dark:text-gray-400 hover:text-primary hover:bg-gray-100 dark:hover:bg-gray-700" id="mobile-menu-button">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 移动端菜单 -->
+            <div class="sm:hidden hidden" id="mobile-menu">
+                <div class="pt-2 pb-3 space-y-1 px-4">
+                    <a href="#about" class="bg-primary/5 border-l-4 border-primary text-primary block pl-3 pr-4 py-2 text-base font-medium">网站介绍</a>
+                    <a href="#features" class="border-l-4 border-transparent hover:border-primary hover:bg-primary/5 text-gray-600 dark:text-gray-300 hover:text-primary block pl-3 pr-4 py-2 text-base font-medium">功能特点</a>
+                    <a href="#steps" class="border-l-4 border-transparent hover:border-primary hover:bg-primary/5 text-gray-600 dark:text-gray-300 hover:text-primary block pl-3 pr-4 py-2 text-base font-medium">使用步骤</a>
+                    <a href="#faq" class="border-l-4 border-transparent hover:border-primary hover:bg-primary/5 text-gray-600 dark:text-gray-300 hover:text-primary block pl-3 pr-4 py-2 text-base font-medium">常见问题</a>
+                    <a href="#reviews" class="border-l-4 border-transparent hover:border-primary hover:bg-primary/5 text-gray-600 dark:text-gray-300 hover:text-primary block pl-3 pr-4 py-2 text-base font-medium">用户评价</a>
+                </div>
+            </div>
+        </nav>
+
+        <header class="relative bg-gradient-to-r from-primary to-secondary text-white py-16 md:py-24 pt-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center fade-in">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4 text-shadow">MX动漫</h1>
+                    <p class="text-xl md:text-2xl max-w-3xl mx-auto opacity-90">高清无广告的动漫天堂。</p>
+                    <div class="mt-8 flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
+                        <a class="bg-white text-primary hover:bg-gray-100 hover:scale-105 transition-transform font-medium py-3 px-6 rounded-lg shadow-lg"
+                            href="https://www.ggonav.com/sites/5957.html" target="_blank">
+                            <i class="fas fa-external-link-alt mr-2"></i>访问官网
+                        </a>
+                        <a class="bg-white text-primary hover:bg-gray-100 hover:scale-105 transition-transform font-medium py-3 px-6 rounded-lg shadow-lg"
+                            href="https://pan.quark.cn/s/0db22432c259" target="_blank"   content="nofollow no-referrer">
+                            <i class="fas fa-external-link-alt mr-2"></i>经典电影/无损音乐
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute inset-0 bg-black opacity-10"></div>
+        </header>
+
+        <!-- 增加隔离空间 -->
+        <div class="h-5 md:h-10"></div>
+
+        <!-- 网站介绍部分 -->
+        <section id="about" class="mb-16 fade-in" style="animation-delay: 0.4s">
+            <h2 class="text-2xl font-bold mb-8 flex items-center">
+                <div class="icon-bg">
+                    <i class="fas fa-info-circle text-primary text-xl"></i>
+                </div>
+                网站介绍
+            </h2>
+            <div class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                            <i class="fas fa-play-circle text-primary mr-2"></i>MX动漫是一个专业的动漫在线观看平台，成立于2025年，总部位于中国。它凭借丰富的动漫资源和优质的用户体验，迅速在动漫爱好者中获得了极高的知名度和良好的口碑。
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                            <i class="fas fa-film text-primary mr-2"></i>该网站致力于为用户提供更全面、更便捷的动漫观看服务，每日更新大量新番动画，涵盖热血、恋爱、悬疑等多种品类，与日本电视台同步更新诸多热门作品，如《鬼灭之刃》《咒术回战》等，满足了不同用户的多样化需求。
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                            <i class="fas fa-check-circle text-primary mr-2"></i>MX动漫的所有内容均经过严格筛选和编辑，确保资源的合法性和高质量。其采用先进的技术手段，保障视频播放的稳定性和流畅性，让用户能够尽情享受动漫带来的乐趣。
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                            <i class="fas fa-handshake text-primary mr-2"></i>此外，MX动漫还积极与各大动漫版权方合作，不断拓展资源库，为用户提供个性化的动漫推荐服务，根据用户的观看历史和兴趣爱好，精准推送可能喜欢的动漫作品，让用户体验到贴心周到的服务。
+                        </p>
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-xl transform hover:scale-[1.02] transition-transform duration-300">
+                        <img src="mxdongman.jpg" alt="MX动漫界面展示" class="w-full h-auto">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 功能特点部分 -->
+        <section id="features" class="mb-16 fade-in" style="animation-delay: 0.6s">
+            <h2 class="text-2xl font-bold mb-8 flex items-center">
+                <div class="icon-bg">
+                    <i class="fas fa-thumbs-up text-primary text-xl"></i>
+                </div>
+                功能特点
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="feature-card">
+                    <h3 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-film text-primary mr-2"></i>
+                        资源丰富分类详细
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        MX动漫整合了全球各类优秀动漫资源，包括日漫、国漫、欧美动漫等，涵盖了冒险、搞笑、科幻、历史等多种题材和风格，无论是经典老番还是最新热番都能轻松找到。同时，动漫分类精细，设有专门的分类导航和排行榜，用户可根据自己的喜好快速定位到心仪的动漫，还能通过筛选功能查看已完结或连载中的动漫状态。
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-high-definition text-primary mr-2"></i>
+                        高清流畅播放体验
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        该网站采用先进的视频压缩和传输技术，确保动漫播放的高清画质和流畅度。视频支持多种清晰度切换，适应不同的网络环境，即使在网络不稳定的情况下，也能通过调整清晰度保证播放的连贯性。此外，还能自定义播放设置，如播放速度调整、画面比例切换等，满足用户的个性化观看需求。
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-user-circle text-primary mr-2"></i>
+                        个性化推荐与社区互动
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        MX动漫会根据用户的观看历史和兴趣爱好，智能推荐符合个人口味的动漫作品，帮助用户发现更多潜在喜欢的番剧。用户可发表弹幕、评论，与其他动漫爱好者实时交流，分享观看感受和心得，还能关注感兴趣的用户，查看他们的推荐和收藏，形成良好的社区互动氛围，增强用户粘性和归属感。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 使用步骤部分 -->
+        <section id="steps" class="mb-16 fade-in" style="animation-delay: 0.6s">
+            <h2 class="text-2xl font-bold mb-8 flex items-center">
+                <div class="icon-bg">
+                    <i class="fas fa-step-forward text-primary text-xl"></i>
+                </div>
+                使用步骤
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="feature-card">
+                    <h3 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-user-plus text-primary mr-2"></i>
+                        注册登录
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        用户可选择通过手机号码、第三方账号等方式进行快速注册登录，注册后可享受更个性化的服务和功能，如收藏记录、观看历史同步等。
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-search text-primary mr-2"></i>
+                        搜索浏览
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        在首页的搜索栏输入动漫名称或相关关键词，即可快速找到目标动漫。也可通过分类导航栏，按照动漫的类型、地区、年份等进行筛选浏览，了解当前热门动漫排行和新番更新动态。
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-play text-primary mr-2"></i>
+                        播放观看
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        点击动漫封面或标题进入详情页面，选择集数和播放源后即可播放观看。在播放过程中，用户可根据需要调整画质、屏幕比例、播放速度等参数，还能发送弹幕与其他观众互动，享受沉浸式的观看体验。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 常见问题部分 -->
+        <section id="faq" class="mb-16 fade-in" style="animation-delay: 0.6s">
+            <h2 class="text-2xl font-bold mb-8 flex items-center">
+                <div class="icon-bg">
+                    <i class="fas fa-question-circle text-primary text-xl"></i>
+                </div>
+                常见问题
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="feature-card">
+                    <h3 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-exclamation-triangle text-secondary mr-2"></i>
+                        视频无法播放
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        可能是网络连接不稳定或播放源出现故障。建议用户先检查网络连接情况，切换不同的网络环境或刷新页面重新加载。若仍无法播放，可尝试更换其他播放源，MX动漫通常提供多个备用播放源，以保障用户能够正常观看到视频。
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-clock text-secondary mr-2"></i>
+                        资源更新不及时
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        虽然MX动漫致力于及时更新动漫资源，但由于版权限制、片源获取时间等因素，部分动漫可能无法实现同步更新。用户可在网站的相关反馈页面提交对特定动漫的更新需求，网站会根据用户的反馈和实际情况，优先安排资源的更新和补充。
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-comment-slash text-secondary mr-2"></i>
+                        无法发送弹幕或评论
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        可能是用户未登录账户或违反了社区规则。请确保已成功登录MX动漫账户，若仍无法发送，需检查自己的发言内容是否包含违规或敏感信息，如广告、辱骂、涉及政治等，避免违反社区规定导致发送失败或被封禁账号。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 用户评价部分 -->
+        <section id="reviews" class="mb-16 fade-in" style="animation-delay: 0.8s">
+            <h2 class="text-2xl font-bold mb-8 flex items-center">
+                <div class="icon-bg">
+                    <i class="fas fa-comments text-primary text-xl"></i>
+                </div>
+                用户评价
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="user-card">
+                    <div class="user-icon">
+                        <img src="https://picsum.photos/200/200?random=1" alt="用户头像" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">动漫达人小明</h3>
+                    <div class="flex text-yellow-400 mb-3">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 italic">
+                        "MX动漫真的是我的追番神器！资源特别丰富，几乎所有的热门动漫都能找到，而且画质很清晰，播放也很流畅。最喜欢它的个性化推荐功能，总能发现一些符合我口味的新番，让我大开眼界。"
+                    </p>
+                </div>
+                <div class="user-card">
+                    <div class="user-icon">
+                        <img src="https://picsum.photos/200/200?random=2" alt="用户头像" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">二次元少女小红</h3>
+                    <div class="flex text-yellow-400 mb-3">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 italic">
+                        "我用过很多动漫网站，但MX动漫是我用过体验最好的之一。界面简洁无广告，观看体验超级棒！还能和大家一起发弹幕互动，感觉就像在和朋友一起追番一样，很有乐趣。"
+                    </p>
+                </div>
+                <div class="user-card">
+                    <div class="user-icon">
+                        <img src="https://picsum.photos/200/200?random=3" alt="用户头像" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">动漫收藏家小张</h3>
+                    <div class="flex text-yellow-400 mb-3">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 italic">
+                        "作为一个动漫收藏爱好者，MX动漫的资源丰富度和分类详细程度让我非常满意。能够方便地找到各种冷门经典动漫，并且画质有保障，还支持离线缓存，让我可以随时随地观看，极大地满足了我的收藏和观看需求。"
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 页脚 -->
+        <footer class="bg-gray-100 dark:bg-gray-800 py-12 rounded-xl">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-6 md:mb-0">
+                        <div class="flex items-center">
+                            <i class="fas fa-play-circle text-primary text-2xl mr-2"></i>
+                            <span class="text-primary font-bold text-xl">MX动漫</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 mt-2">高清无广告的动漫天堂</p>
+                    </div>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+                    <div class="flex flex-col md:flex-row justify-between">
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">
+                            &copy; 2025 MX动漫. 保留所有权利.
+                        </p>
+                        <div class="mt-4 md:mt-0">
+                            <ul class="flex flex-wrap justify-center md:justify-end space-x-6">
+                                <li>
+                                    <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary text-sm">隐私政策</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary text-sm">使用条款</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary text-sm">联系我们</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.remove('shadow-sm');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.add('shadow-sm');
+            }
+        });
+
+        // 移动端菜单切换
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 暗色模式切换
+        document.getElementById('themeToggle').addEventListener('click', function() {
+            document.documentElement.classList.toggle('dark');
+            
+            // 切换图标
+            const icon = this.querySelector('i');
+            if (document.documentElement.classList.contains('dark')) {
+                icon.classList.remove('fa-moon-o');
+                icon.classList.add('fa-sun-o');
+            } else {
+                icon.classList.remove('fa-sun-o');
+                icon.classList.add('fa-moon-o');
+            }
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 关闭移动端菜单
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+
+        // 元素进入视口时的淡入效果
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                    fadeInObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        fadeElements.forEach(element => {
+            fadeInObserver.observe(element);
+        });
+    </script>
+</body>
+
+</html>
